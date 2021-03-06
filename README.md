@@ -11,4 +11,4 @@ dependencies:
   introduction_screen: ^1.0.7
 ```
 
-## Pull request and feedback are always appreciated 
+## -- Pull request and feedback are always appreciated --
