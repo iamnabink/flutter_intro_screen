@@ -10,5 +10,6 @@ You just need to add `introduction_screen` as a [dependency in your pubspec.yaml
 dependencies:
   introduction_screen: ^1.0.7
 ```
+Will be released soon 
 
 ## -- Pull request and feedback are always appreciated --
