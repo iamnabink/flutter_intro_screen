@@ -11,8 +11,8 @@ class IntroButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlatButton(
       onPressed: onPressed,
-      child: child,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      child: child,
     );
   }
 }

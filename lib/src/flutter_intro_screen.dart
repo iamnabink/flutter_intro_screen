@@ -141,7 +141,7 @@ class IntroductionScreenState extends State<IntroductionScreen> {
   @override
   void initState() {
     super.initState();
-    int initialPage = min(widget.initialPage, widget.pages.length - 1);
+    final int initialPage = min(widget.initialPage, widget.pages.length - 1);
     _currentPage = initialPage.toDouble();
     _pageController = PageController(initialPage: initialPage);
   }
@@ -185,22 +185,25 @@ class IntroductionScreenState extends State<IntroductionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unnecessary_parenthesis
     final isLastPage = (_currentPage.round() == widget.pages.length - 1);
-    bool isSkipBtn = (!_isSkipPressed && !isLastPage && widget.showSkipButton);
+    // ignore: unnecessary_parenthesis
+    final bool isSkipBtn =
+        !_isSkipPressed && !isLastPage && widget.showSkipButton;
 
     final skipBtn = IntroButton(
-      child: widget.skip,
       onPressed: isSkipBtn ? _onSkip : null,
+      child: widget.skip,
     );
 
     final nextBtn = IntroButton(
-      child: widget.next,
       onPressed: widget.showNextButton && !_isScrolling ? next : null,
+      child: widget.next,
     );
 
     final doneBtn = IntroButton(
-      child: widget.done,
       onPressed: widget.onDone,
+      child: widget.done,
     );
 
     return Scaffold(
@@ -214,8 +217,8 @@ class IntroductionScreenState extends State<IntroductionScreen> {
               physics: widget.freeze
                   ? const NeverScrollableScrollPhysics()
                   : const BouncingScrollPhysics(),
-              children: widget.pages.map((p) => IntroPage(page: p)).toList(),
               onPageChanged: widget.onChange,
+              children: widget.pages.map((p) => IntroPage(page: p)).toList(),
             ),
           ),
           Positioned(
