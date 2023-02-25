@@ -2,6 +2,8 @@
 
 A flutter package for making customizable intro (get started) screen.
 
+![Cover Image](screenshots/cover.png)
+
 ## Installation
 
 You just need to add `introduction_screen` as a [dependency in your pubspec.yaml file](https://flutter.io/using-packages/).

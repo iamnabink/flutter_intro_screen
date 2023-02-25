@@ -75,17 +75,17 @@ class IntroductionScreen extends StatefulWidget {
   /// Flex ratio of the skip button
   ///
   /// @Default `1`
-  final int skipFlex;
+  final EdgeInsets skipPadding;
 
   /// Flex ratio of the progress indicator
   ///
   /// @Default `1`
-  final int dotsFlex;
+  final EdgeInsets dotsPadding;
 
   /// Flex ratio of the next/done button
   ///
   /// @Default `1`
-  final int nextFlex;
+  final EdgeInsets nextPadding;
 
   /// Type of animation between pages
   ///
@@ -110,16 +110,15 @@ class IntroductionScreen extends StatefulWidget {
     this.dotsDecorator = const DotsDecorator(),
     this.animationDuration = 350,
     this.initialPage = 0,
-    this.skipFlex = 1,
-    this.dotsFlex = 1,
-    this.nextFlex = 1,
+    this.skipPadding = const EdgeInsets.all(4),
+    this.dotsPadding = const EdgeInsets.all(4),
+    this.nextPadding = const EdgeInsets.all(4),
     this.curve = Curves.easeIn,
   })  : assert(
           pages.length > 0,
           "You provide at least one page on introduction screen !",
         ),
-        assert((showSkipButton) || !showSkipButton),
-        assert(skipFlex >= 0 && dotsFlex >= 0 && nextFlex >= 0),
+        assert(showSkipButton || !showSkipButton),
         assert(initialPage >= 0),
         super(key: key);
 
@@ -147,12 +146,12 @@ class IntroductionScreenState extends State<IntroductionScreen> {
     animateScroll(min(_currentPage.round() + 1, widget.pages.length - 1));
   }
 
-  void _onSkip()  {
+  void _onSkip() {
     if (widget.onSkip != null) return widget.onSkip!();
-     skipToEnd();
+    skipToEnd();
   }
 
-  Future<void> skipToEnd()  async{
+  Future<void> skipToEnd() async {
     setState(() => _isSkipPressed = true);
     await animateScroll(widget.pages.length - 1);
     if (mounted) {
@@ -175,7 +174,7 @@ class IntroductionScreenState extends State<IntroductionScreen> {
   bool _onScroll(ScrollNotification notification) {
     final metrics = notification.metrics;
     if (metrics is PageMetrics) {
-      setState(() => _currentPage = metrics.page??0.0);
+      setState(() => _currentPage = metrics.page ?? 0.0);
     }
     return false;
   }
@@ -218,45 +217,38 @@ class IntroductionScreenState extends State<IntroductionScreen> {
               children: widget.pages.map((p) => IntroPage(page: p)).toList(),
             ),
           ),
-          Positioned(
-            bottom: 16.0,
-            left: 16.0,
-            right: 16.0,
-            child: SafeArea(
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: widget.skipFlex,
-                    child: isSkipBtn
-                        ? skipBtn
-                        : Opacity(opacity: 0.0, child: skipBtn),
-                  ),
-                  Expanded(
-                    flex: widget.dotsFlex,
-                    child: Center(
-                      child: widget.isProgress
-                          ? DotsIndicator(
-                              dotsCount: widget.pages.length,
-                              position: _currentPage,
-                              decorator: widget.dotsDecorator,
-                              onTap: widget.isProgressTap && !widget.freeze
-                                  ? (pos) => animateScroll(pos.toInt())
-                                  : null,
-                            )
-                          : const SizedBox(),
-                    ),
-                  ),
-                  Expanded(
-                    flex: widget.nextFlex,
-                    child: isLastPage
-                        ? doneBtn
-                        : widget.showNextButton
-                            ? nextBtn
-                            : Opacity(opacity: 0.0, child: nextBtn),
-                  ),
-                ],
+          Stack(
+            children: [
+              Container(
+                padding: widget.skipPadding,
+                alignment: Alignment.bottomLeft,
+                child:
+                    isSkipBtn ? skipBtn : Opacity(opacity: 0.0, child: skipBtn),
               ),
-            ),
+              Container(
+                padding: widget.dotsPadding,
+                alignment: Alignment.bottomCenter,
+                child: widget.isProgress
+                    ? DotsIndicator(
+                        dotsCount: widget.pages.length,
+                        position: _currentPage,
+                        decorator: widget.dotsDecorator,
+                        onTap: widget.isProgressTap && !widget.freeze
+                            ? (pos) => animateScroll(pos.toInt())
+                            : null,
+                      )
+                    : const SizedBox(),
+              ),
+              Container(
+                padding: widget.nextPadding,
+                alignment: Alignment.bottomRight,
+                child: isLastPage
+                    ? doneBtn
+                    : widget.showNextButton
+                        ? nextBtn
+                        : Opacity(opacity: 0.0, child: nextBtn),
+              ),
+            ],
           ),
         ],
       ),

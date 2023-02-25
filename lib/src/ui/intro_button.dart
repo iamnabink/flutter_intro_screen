@@ -9,8 +9,8 @@ class IntroButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
+    return GestureDetector(
+      onTap: onPressed,
       // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       child: child,
     );
