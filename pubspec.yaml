@@ -1,7 +1,6 @@
 name: flutter_intro_screen
 description: A flutter package for making customizable intro (get started) screen.
-version: 0.0.1
-author: Nabraj Khadka
+version: 1.0.0
 homepage: https://github.com/iamnabink/flutter_intro_screen
 
 environment:
@@ -16,8 +15,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-    #The implementation of the lint rules supported by the analyzer framework. This package is not intended to be used directly.
-  linter:
+  flutter_lints: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

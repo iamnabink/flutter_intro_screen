@@ -1,4 +1,4 @@
-include: package:lint/analysis_options.yaml
+include: package:flutter_lints/flutter.yaml
 
 ##
 # Lint rules to be used for apps without developer facing API. i.e. command line tools and Flutter applications
@@ -710,7 +710,7 @@ linter:
 
     # Any sorting is better than no sorting
     # https://dart-lang.github.io/linter/lints/sort_pub_dependencies.html
-    - sort_pub_dependencies
+    # - sort_pub_dependencies
 
     # Default constructor comes first.
     # pedantic: disabled

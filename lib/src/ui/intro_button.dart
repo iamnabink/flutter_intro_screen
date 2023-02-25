@@ -9,9 +9,9 @@ class IntroButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return ElevatedButton(
       onPressed: onPressed,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       child: child,
     );
   }

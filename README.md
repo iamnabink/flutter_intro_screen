@@ -8,7 +8,11 @@ You just need to add `introduction_screen` as a [dependency in your pubspec.yaml
 
 ```yaml
 dependencies:
-  introduction_screen: ^1.0.7
+  
+  flutter_intro_screen:
+    git:
+      url: https://github.com/iamnabink/flutter_intro_screen.git
+      ref: main
 ```
 Will be released soon 
 
