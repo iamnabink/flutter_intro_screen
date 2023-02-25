@@ -4,9 +4,9 @@ import 'package:flutter_intro_screen/src/model/page_view_model.dart';
 class IntroContent extends StatelessWidget {
   final PageViewModel page;
 
-  const IntroContent({Key key, @required this.page}) : super(key: key);
+  const IntroContent({Key? key, required this.page}) : super(key: key);
 
-  Widget _buildWidget(Widget widget, String text, TextStyle style) {
+  Widget _buildWidget(Widget? widget, String text, TextStyle style) {
     return widget ?? Text(text, style: style, textAlign: TextAlign.center);
   }
 
@@ -20,7 +20,7 @@ class IntroContent extends StatelessWidget {
             padding: page.decoration.titlePadding,
             child: _buildWidget(
               page.titleWidget,
-              page.title,
+              page.title??'',
               page.decoration.titleTextStyle,
             ),
           ),
@@ -28,7 +28,7 @@ class IntroContent extends StatelessWidget {
             padding: page.decoration.descriptionPadding,
             child: _buildWidget(
               page.bodyWidget,
-              page.body,
+              page.body??'',
               page.decoration.bodyTextStyle,
             ),
           ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class PageDecoration {
   /// Background page color
-  final Color pageColor;
+  final Color? pageColor;
 
   /// TextStyle for title
   ///
@@ -15,7 +15,7 @@ class PageDecoration {
   final TextStyle bodyTextStyle;
 
   /// BoxDecoration for page
-  final BoxDecoration boxDecoration;
+  final BoxDecoration? boxDecoration;
 
   /// Flex ratio of the image
   final int imageFlex;
@@ -49,7 +49,7 @@ class PageDecoration {
   final EdgeInsets footerPadding;
 
   const PageDecoration({
-    this.pageColor,
+     this.pageColor,
     this.titleTextStyle = const TextStyle(
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
